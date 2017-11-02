@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Dictionary</title>
+    </head>
+    <body>
+    <div style='background-color:grey;'>
+        <h1 style='color:purple'><strong>DICTIONARY</strong> </h1>
+    </div>
+    <div>
+        <form action="request.php" method="get" id="define">
+            word:<input type="text" word="word" id="def">
+            <button type="button" onclick="newReq('request.php?=')">Search</button>
+           
+            <input type="submit" value="Submit"/>
+        </form>
+        <div id="rez">
+            <ol>
+                
+            </ol>
+        </div>
+        
+    </div>
+    <script type="text/javascript">
+        function newReq(url){
+            var httpReq= new XMLHttpReq();
+            var rez=document.getElementById("def").value;
+            
+            httpReq.onreadystatechange=function(){
+                if(httpReq.readyState==XMLHttpReq.DONE){
+                    if(httpReq.status==200){
+                        document.getElementById("def").innerHTML=httpReq.responseText;
+                        alert("Definition: A statement of the exact meaning of a word.");
+                    }
+                    else{
+                        alert("ERROR ERROR");
+                    }
+                }
+            };
+            httpReq.open('GET', "request.php?q="+rez, true);
+            httpReq.send();
+        }
+       
+        
+    </script>
+    </body>
+   </html> 
