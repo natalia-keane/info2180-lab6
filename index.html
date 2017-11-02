@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Dictionary</title>
+    </head>
+    <body>
+    <div style='background-color:grey;'>
+        <h1 style='color:purple'><strong>WEB DICTIONARY</strong> </h1>
+    </div>
+    <div>
+        <form action="#" method="get" name="form_search" id="define" class="form_class">
+            word:<input type="text" word="word" id="def">
+            <input type="button" name="subj_search" id="sub_search" value="Search" onclick="newReq('request.php?=')" />
+            <input type="button" name="subj_return"id="sub_return" value="Get All Definition" onclick="reqForAll('request.php?q=&all=true')" />
+            <input type="submit" value="Submit"/>
+        </form>
+        <div id="rez">
+            <ol>
+                
+            </ol>
+        </div>
+        
+    </div>
+    <script type="text/javascript">
+        function newReq(url){
+            var httpReq= new XMLHttpRequest();
+            var rez=document.getElementById("def").value;
+            console.log(rez);
+            httpReq.onreadystatechange=function(){
+                if(httpReq.readyState==XMLHttpRequest.DONE && httpReq.status==200){
+                        document.getElementById("def").innerHTML=httpReq.responseText;
+                        alert("Definition: A statement of the exact meaning of a word, especially in a dictionary.");
+                    }
+                    else{
+                        alert("ERROR ERROR");
+                    }
+                
+            };
+            httpReq.open('GET', "request.php?q=" + rez, true);
+            httpReq.send();
+        }
+       
+       function reqForAll(url){
+            var httpReq_1=new XMLHttpRequest();
+            httpReq_1.onreadystatechange = function(){
+                if(httpReq_1.readyState == XMLHttpRequest.DONE && httpReq_1.status==200){
+                        var ol=document.createElement("ol");
+		                var p1=document.createElement("p1");
+                        var t=document.createTextNode("httpReq.responseText");
+                        ol.appendChild(p1);
+                        document.body.appendChild(ol);
+                    }
+                    else{
+                        alert("ERROR ERROR");
+                    }
+                
+            };
+            httpReq_1.open('GET',  "request.php?q=&all=true", true);
+            httpReq_1.send();
+        }
+
+        
+    </script>
+    </body>
+   </html> 
