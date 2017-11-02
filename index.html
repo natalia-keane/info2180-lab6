@@ -5,6 +5,7 @@
     </head>
     <body>
     <div style='background-color:grey;'>
+<<<<<<< HEAD
         <h1 style='color:purple'><strong>WEB DICTIONARY</strong> </h1>
     </div>
     <div>
@@ -12,6 +13,15 @@
             word:<input type="text" word="word" id="def">
             <input type="button" name="subj_search" id="sub_search" value="Search" onclick="newReq('request.php?=')" />
             <input type="button" name="subj_return"id="sub_return" value="Get All Definition" onclick="reqForAll('request.php?q=&all=true')" />
+=======
+        <h1 style='color:purple'><strong>DICTIONARY</strong> </h1>
+    </div>
+    <div>
+        <form action="request.php" method="get" id="define">
+            word:<input type="text" word="word" id="def">
+            <button type="button" onclick="newReq('request.php?=')">Search</button>
+           
+>>>>>>> origin/master
             <input type="submit" value="Submit"/>
         </form>
         <div id="rez">
@@ -23,6 +33,7 @@
     </div>
     <script type="text/javascript">
         function newReq(url){
+<<<<<<< HEAD
             var httpReq= new XMLHttpRequest();
             var rez=document.getElementById("def").value;
             console.log(rez);
@@ -30,10 +41,21 @@
                 if(httpReq.readyState==XMLHttpRequest.DONE && httpReq.status==200){
                         document.getElementById("def").innerHTML=httpReq.responseText;
                         alert("Definition: A statement of the exact meaning of a word, especially in a dictionary.");
+=======
+            var httpReq= new XMLHttpReq();
+            var rez=document.getElementById("def").value;
+            
+            httpReq.onreadystatechange=function(){
+                if(httpReq.readyState==XMLHttpReq.DONE){
+                    if(httpReq.status==200){
+                        document.getElementById("def").innerHTML=httpReq.responseText;
+                        alert("Definition: A statement of the exact meaning of a word.");
+>>>>>>> origin/master
                     }
                     else{
                         alert("ERROR ERROR");
                     }
+<<<<<<< HEAD
                 
             };
             httpReq.open('GET', "request.php?q=" + rez, true);
@@ -59,6 +81,14 @@
             httpReq_1.send();
         }
 
+=======
+                }
+            };
+            httpReq.open('GET', "request.php?q="+rez, true);
+            httpReq.send();
+        }
+       
+>>>>>>> origin/master
         
     </script>
     </body>
